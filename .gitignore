@@ -1,0 +1,18 @@
+# Byte-compiled
+__pycache__/
+*.py[cod]
+
+# Virtualenv
+.venv/
+venv/
+
+# IDE
+.vscode/
+
+# Env
+.env
+.env.local
+
+# OS
+.DS_Store
+Thumbs.db
