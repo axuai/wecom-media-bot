@@ -279,6 +279,22 @@ def index():
     return jsonify({"status": "ok", "service": "wecom-media-bot"})
 
 
+@app.route("/debug")
+def debug():
+    """调试：检查配置是否正确"""
+    token_ok = bool(get_access_token())
+    return jsonify({
+        "corp_id_set": bool(CORP_ID),
+        "agent_id_set": bool(AGENT_ID),
+        "secret_set": bool(SECRET),
+        "token_set": bool(TOKEN),
+        "aes_key_set": bool(AES_KEY),
+        "parse_api_set": bool(PARSE_API_URL),
+        "access_token_ok": token_ok,
+        "access_token_preview": _access_token_cache["token"][:20] + "..." if _access_token_cache["token"] else "EMPTY",
+    })
+
+
 @app.route("/wecom/callback", methods=["GET", "POST"])
 def wecom_callback():
     """
